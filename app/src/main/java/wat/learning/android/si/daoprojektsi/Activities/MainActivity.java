@@ -29,10 +29,12 @@ import wat.learning.android.si.daoprojektsi.Fragments.Main.ButtonsFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.MiesieczneOplatyListFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.MiesieczneOplatyV2Fragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.NowaWiadomoscFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.OdbiorWiadomosciFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.OdczytLicznikowFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.SkrzynkaOdbiorczaFragment;
 import wat.learning.android.si.daoprojektsi.R;
 
-public class MainActivity extends AppCompatActivity implements MyResultReceiver.Receiver {
+public class MainActivity extends AppCompatActivity implements MyResultReceiver.Receiver, SkrzynkaOdbiorczaFragment.SkrzynkaListListener {
 
     private int lokatorId;
     private DatabaseConnection dbConn;
@@ -168,6 +170,15 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         ft.commit();
     }
 
+    public void showSkrzynka(){
+        SkrzynkaOdbiorczaFragment skrzynkaOdbiorczaFragment = new SkrzynkaOdbiorczaFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, skrzynkaOdbiorczaFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
     public void showOplaty(){
         MiesieczneOplatyV2Fragment miesieczneOplatyFragment = new MiesieczneOplatyV2Fragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -177,8 +188,27 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         ft.commit();
     }
 
-    public void dodajOdczyt(String odczyt, String dataOdczytu){
+    public void dodajOdczyt(String media, String odczyt, String dataOdczytu){
         //TODO: co ma robić po dodaniu
+    }
+
+    public void nowaWiadomosc(String odbiorca, String temat, String wiadomosc){
+        //TODO: wysylanie wiadomosci (narazie bez zalacznikow)
+    }
+
+    public void odpowiedz(String odbiorca, String temat){
+        NowaWiadomoscFragment nowaWiadomoscFragment = new NowaWiadomoscFragment();
+        nowaWiadomoscFragment.odbiorcaO = odbiorca;
+        nowaWiadomoscFragment.tematO = temat;
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, nowaWiadomoscFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
+    public void usun(long id){
+        //TODO: Usun wiadomosc ze skrzynki odbiorczej
     }
 
 //    @Override
@@ -218,5 +248,17 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
 
     public ArrayList<String> getMediaList(){
         return list;
+    }
+
+    @Override
+    public void itemClicked(long id) {
+        //TODO: przekazanie ID wiadomosci do fragmentu odbioru wiadomosci
+        OdbiorWiadomosciFragment odbiorWiadomosciFragment = new OdbiorWiadomosciFragment();
+        odbiorWiadomosciFragment.setId(id);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, odbiorWiadomosciFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
     }
 }

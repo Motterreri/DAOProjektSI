@@ -49,6 +49,13 @@ public class ButtonsFragment extends Fragment {
                 ((MainActivity)getActivity()).showNowaWiadomosc();
             }
         });
+        Button buttonSkrzynka = fragView.findViewById(R.id.button4);
+        buttonSkrzynka.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).showSkrzynka();
+            }
+        });
         return fragView;
     }
 

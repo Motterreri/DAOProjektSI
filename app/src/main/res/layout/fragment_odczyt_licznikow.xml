@@ -24,13 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/odczyt"
+            android:inputType="numberDecimal"
             />
 
-        <EditText
+        <TextView
             android:id="@+id/data_odczytu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/data_odczytu"
+            android:text=""
             />
 
         <Button

@@ -2,43 +2,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="wat.learning.android.si.daoprojektsi.Fragments.Main.NowaWiadomoscFragment">
+    tools:context="wat.learning.android.si.daoprojektsi.Fragments.Main.OdbiorWiadomosciFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
+        <TextView
             android:id="@+id/odbiorca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/odbiorca"
             />
 
-        <EditText
+        <TextView
             android:id="@+id/temat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/odbiorca"
-            android:hint="@string/temat"
             />
 
         <Button
-            android:id="@+id/dodaj_zalacznik"
+            android:id="@+id/usun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:text="@string/dodaj_zalacznik"
+            android:text="@string/usun"
             />
 
         <Button
-            android:id="@+id/wyslij"
+            android:id="@+id/odpowiedz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:text="@string/wyslij"
+            android:text="Odpowiedz"
             />
 
         <LinearLayout
@@ -48,7 +47,7 @@
             android:layout_above="@+id/wyslij"
             android:layout_below="@+id/temat">
 
-            <EditText
+            <TextView
                 android:id="@+id/tresc_wiadomosci"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

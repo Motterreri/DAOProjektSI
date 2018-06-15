@@ -57,4 +57,6 @@
     <string name="open_drawer">Otwórz szufladę</string>
     <string name="close_drawer">Zamknij szufladę</string>
     <string name="nowa_wiadomosc">Nowa Wiadomość</string>
+    <string name="skrzynka_odbiorcza">Skrzynka odbiorcza</string>
+    <string name="usun">Usuń</string>
 </resources>
