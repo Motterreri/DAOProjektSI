@@ -62,4 +62,7 @@
     <string name="glosowanie">Głosowanie</string>
     <string name="zaglosuj">Zagłosuj</string>
     <string name="pokazProjekt">Pokaż projekt</string>
+    <string name="finanse_wspolnoty">Finanse wspólnoty</string>
+    <string name="przychody">Przychody</string>
+    <string name="obciazenia">Obiążenia</string>
 </resources>

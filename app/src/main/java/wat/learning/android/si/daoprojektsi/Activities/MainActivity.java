@@ -26,6 +26,8 @@ import wat.learning.android.si.daoprojektsi.Database.DatabaseConnection;
 import wat.learning.android.si.daoprojektsi.Database.DatabaseService;
 import wat.learning.android.si.daoprojektsi.Database.MyResultReceiver;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.ButtonsFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.FakturyListFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.FinanseFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.GlosowanieFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.GlosowanieFragment.GlosowanieListener;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.MiesieczneOplatyListFragment;
@@ -35,11 +37,12 @@ import wat.learning.android.si.daoprojektsi.Fragments.Main.OdbiorWiadomosciFragm
 import wat.learning.android.si.daoprojektsi.Fragments.Main.OdczytLicznikowFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.ProjektFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.SkrzynkaOdbiorczaFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.SzczegolyFakturyFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.SzczegolyGlosowaniaFragment;
 import wat.learning.android.si.daoprojektsi.R;
 
 public class MainActivity extends AppCompatActivity implements MyResultReceiver.Receiver,
-        SkrzynkaOdbiorczaFragment.SkrzynkaListListener, GlosowanieListener {
+        SkrzynkaOdbiorczaFragment.SkrzynkaListListener, GlosowanieListener, FakturyListFragment.FakturyListener {
 
     private int lokatorId;
     private DatabaseConnection dbConn;
@@ -235,6 +238,15 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
     }
+
+    public void showFinanse(){
+        FinanseFragment finanseFragment = new FinanseFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, finanseFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
 //    @Override
 //    public void onBackPressed() {
 ////        if(lokatorId != 0) {
@@ -293,6 +305,19 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         szczegolyGlosowaniaFragment.setId(id);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.frameMain, szczegolyGlosowaniaFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
+
+    @Override
+    public void itemClickedF(long id) {
+        //TODO: przekazanie ID faktury do fragmentu szczegółów fakury
+        SzczegolyFakturyFragment szczegolyFakturyFragment = new SzczegolyFakturyFragment();
+        szczegolyFakturyFragment.setId(id);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, szczegolyFakturyFragment);
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
