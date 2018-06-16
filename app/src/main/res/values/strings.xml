@@ -59,4 +59,7 @@
     <string name="nowa_wiadomosc">Nowa Wiadomość</string>
     <string name="skrzynka_odbiorcza">Skrzynka odbiorcza</string>
     <string name="usun">Usuń</string>
+    <string name="glosowanie">Głosowanie</string>
+    <string name="zaglosuj">Zagłosuj</string>
+    <string name="pokazProjekt">Pokaż projekt</string>
 </resources>

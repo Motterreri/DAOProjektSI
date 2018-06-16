@@ -26,15 +26,20 @@ import wat.learning.android.si.daoprojektsi.Database.DatabaseConnection;
 import wat.learning.android.si.daoprojektsi.Database.DatabaseService;
 import wat.learning.android.si.daoprojektsi.Database.MyResultReceiver;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.ButtonsFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.GlosowanieFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.GlosowanieFragment.GlosowanieListener;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.MiesieczneOplatyListFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.MiesieczneOplatyV2Fragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.NowaWiadomoscFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.OdbiorWiadomosciFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.OdczytLicznikowFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.ProjektFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.SkrzynkaOdbiorczaFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.SzczegolyGlosowaniaFragment;
 import wat.learning.android.si.daoprojektsi.R;
 
-public class MainActivity extends AppCompatActivity implements MyResultReceiver.Receiver, SkrzynkaOdbiorczaFragment.SkrzynkaListListener {
+public class MainActivity extends AppCompatActivity implements MyResultReceiver.Receiver,
+        SkrzynkaOdbiorczaFragment.SkrzynkaListListener, GlosowanieListener {
 
     private int lokatorId;
     private DatabaseConnection dbConn;
@@ -179,6 +184,15 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         ft.commit();
     }
 
+    public void showGlosowanie(){
+        GlosowanieFragment glosowanieFragment = new GlosowanieFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, glosowanieFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
     public void showOplaty(){
         MiesieczneOplatyV2Fragment miesieczneOplatyFragment = new MiesieczneOplatyV2Fragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -211,6 +225,16 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         //TODO: Usun wiadomosc ze skrzynki odbiorczej
     }
 
+    public void pokazProjekt(long id)
+    {
+        ProjektFragment projektFragment = new ProjektFragment();
+        projektFragment.setId(id);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, projektFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
 //    @Override
 //    public void onBackPressed() {
 ////        if(lokatorId != 0) {
@@ -257,6 +281,18 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         odbiorWiadomosciFragment.setId(id);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.frameMain, odbiorWiadomosciFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
+    @Override
+    public void itemClickedG(long id) {
+        //TODO: przekazanie ID glosowania do fragmentu szegółów głosowania
+        SzczegolyGlosowaniaFragment szczegolyGlosowaniaFragment = new SzczegolyGlosowaniaFragment();
+        szczegolyGlosowaniaFragment.setId(id);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, szczegolyGlosowaniaFragment);
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
