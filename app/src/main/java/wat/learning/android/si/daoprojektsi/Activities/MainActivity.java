@@ -37,12 +37,15 @@ import wat.learning.android.si.daoprojektsi.Fragments.Main.OdbiorWiadomosciFragm
 import wat.learning.android.si.daoprojektsi.Fragments.Main.OdczytLicznikowFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.ProjektFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.SkrzynkaOdbiorczaFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.SprzetyListFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.SzczegolyFakturyFragment;
 import wat.learning.android.si.daoprojektsi.Fragments.Main.SzczegolyGlosowaniaFragment;
+import wat.learning.android.si.daoprojektsi.Fragments.Main.SzczegolySprzetuFragment;
 import wat.learning.android.si.daoprojektsi.R;
 
 public class MainActivity extends AppCompatActivity implements MyResultReceiver.Receiver,
-        SkrzynkaOdbiorczaFragment.SkrzynkaListListener, GlosowanieListener, FakturyListFragment.FakturyListener {
+        SkrzynkaOdbiorczaFragment.SkrzynkaListListener, GlosowanieListener, FakturyListFragment.FakturyListener,
+        SprzetyListFragment.SprzetyListener{
 
     private int lokatorId;
     private DatabaseConnection dbConn;
@@ -247,6 +250,15 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
     }
+
+    public void showSprzety(){
+        SprzetyListFragment sprzetyFragment = new SprzetyListFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, sprzetyFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
 //    @Override
 //    public void onBackPressed() {
 ////        if(lokatorId != 0) {
@@ -318,6 +330,18 @@ public class MainActivity extends AppCompatActivity implements MyResultReceiver.
         szczegolyFakturyFragment.setId(id);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.frameMain, szczegolyFakturyFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+    }
+
+    @Override
+    public void itemClickedS(long id) {
+        //TODO: przekazanie ID sprzetu do fragmentu szczegółów sprzetu
+        SzczegolySprzetuFragment szczegolySprzetuFragment = new SzczegolySprzetuFragment();
+        szczegolySprzetuFragment.setId(id);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frameMain, szczegolySprzetuFragment);
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();

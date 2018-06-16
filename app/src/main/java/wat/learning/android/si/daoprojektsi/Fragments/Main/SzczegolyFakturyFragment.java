@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import wat.learning.android.si.daoprojektsi.R;
 
 /**
@@ -38,6 +40,10 @@ public class SzczegolyFakturyFragment extends Fragment {
         TextView podmiotWystawiajacy = (TextView) fragView.findViewById(R.id.podmiot_wystawiajacy);
         TextView terminPlatnosci = (TextView) fragView.findViewById(R.id.termin_platnosci);
         TextView dataWystawienia = (TextView) fragView.findViewById(R.id.data_wystawienia);
+        TextView kwota = (TextView) fragView.findViewById(R.id.kwota);
+        TextView opis = (TextView)  fragView.findViewById(R.id.opis_faktury);
+
+        //TODO: Pobrać i wyświetlić szczegóły faktury
 
         return fragView;
     }

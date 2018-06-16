@@ -70,6 +70,13 @@ public class ButtonsFragment extends Fragment {
                 ((MainActivity)getActivity()).showFinanse();
             }
         });
+        Button buttonSprzety = fragView.findViewById(R.id.button7);
+        buttonSprzety.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).showSprzety();
+            }
+        });
         return fragView;
     }
 
